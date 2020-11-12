@@ -3,22 +3,22 @@
     "path": "~/Dropbox/personal_website_hugo-theme-nix/config.toml",
     "project_path": "config.toml",
     "type": "toml",
-    "hash": "1985585345",
+    "hash": "2535917209",
     "contents": "",
     "dirty": false,
     "created": 1605161309433.0,
     "source_on_save": false,
     "relative_order": 3,
     "properties": {
-        "cursorPosition": "36,26",
+        "cursorPosition": "36,28",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1605217362,
+    "lastKnownWriteTime": 1605217748,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1605217362988,
+    "last_content_update": 1605217748394,
     "read_only": false,
     "read_only_alternatives": []
 }
