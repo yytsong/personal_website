@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on YTSONG&#39;s HOME</title>
+    <link>/categories/python/</link>
+    <description>Recent content in Python on YTSONG&#39;s HOME</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Python] Install Python3 and make it default on macOS Catalina</title>
+      <link>/archive/python-install-python3-and-make-it-default-on-macos-catalina/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/python-install-python3-and-make-it-default-on-macos-catalina/</guid>
+      <description>Resource: https://www.youtube.com/watch?v=0rg6nyanX5Y  Comment: A nature and easy step-by-step guide to install Python3 using homebrew on macOS Catalina Version 10.15.7. Up in front, this mentor explained (1) switch command line to zsh instead of bash; (2) benefits of utilizing homebrew instead of anaconda for setting up python environment; (3) additional link for Mojave. This method also enables pip install of python packages, and make python3 default choice when calling python by updating .</description>
+    </item>
+    
+  </channel>
+</rss>

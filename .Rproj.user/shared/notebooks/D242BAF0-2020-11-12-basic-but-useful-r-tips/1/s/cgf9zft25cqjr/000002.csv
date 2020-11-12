@@ -1,0 +1,9 @@
+"0","library(hrbrthemes)"
+"0","library(scales)"
+"0","library(ggrepel)"
+"0","library(cowplot)"
+"0",""
+"0",""
+"0","year_series <- unique(population$year)"
+"2","Error in unique(population$year) : object 'population' not found
+"

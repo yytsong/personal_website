@@ -1,0 +1,329 @@
+---
+title: Basic but Useful R Tips
+author: Yutong Song
+date: '2020-11-12'
+slug: basic-but-useful-r-tips
+categories:
+  - R
+tags:
+  - R
+  - Tips
+---
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/plotly-binding/plotly.js"></script>
+<script src="/rmarkdown-libs/typedarray/typedarray.min.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
+
+
+<div id="data-exploration" class="section level2">
+<h2>Data Exploration</h2>
+<p>I code in <strong>tidyverse</strong> universe plus <strong>tidylog</strong> to output all message corresponding to changes made to vector, dataframe, tibble, etc. Please find tidylog package @ <a href="https://github.com/elbersb/tidylog" class="uri">https://github.com/elbersb/tidylog</a>.</p>
+<ul>
+<li>An initial step is often to preview a dataset. An alternative to summary is describe in <strong>Hmisc</strong> package. The benefits will be it counts number of NAs as summary does, but it also show a frequency table for factor/character.</li>
+</ul>
+<pre class="r"><code>library(tidyverse)
+
+# colnames(iris)
+# summary(iris)
+# str(iris)
+
+library(Hmisc)
+
+iris$Species %&gt;% describe</code></pre>
+<pre><code>## . 
+##        n  missing distinct 
+##      150        0        3 
+##                                            
+## Value          setosa versicolor  virginica
+## Frequency          50         50         50
+## Proportion      0.333      0.333      0.333</code></pre>
+<ul>
+<li><strong>tidylog</strong> reduces significant code verification and avoid many errors for me. It warns you when NA is generated due to situation not considered.</li>
+</ul>
+<pre class="r"><code>library(tidylog, warn.conflicts = FALSE, quietly = FALSE)
+
+new_dt &lt;- iris %&gt;% 
+  filter(Sepal.Length &gt;= 4.6) %&gt;% 
+  mutate(new_name = case_when(
+    Species == &quot;versicolor&quot; ~ &quot;V&quot;,
+    Species == &quot;setosa&quot; ~ &quot;S&quot;))</code></pre>
+<pre><code>## filter: removed 5 rows (3%), 145 rows remaining</code></pre>
+<pre><code>## mutate: new variable &#39;new_name&#39; (character) with 3 unique values and 34% NA</code></pre>
+<ul>
+<li>Compare with revised code: no new NA was generated after the mutation.</li>
+</ul>
+<pre class="r"><code>library(tidylog, warn.conflicts = FALSE, quietly = FALSE)
+
+new_dt &lt;- iris %&gt;% 
+  filter(Sepal.Length &gt;= 4.6) %&gt;% 
+  mutate(new_name = case_when(
+    Species == &quot;versicolor&quot; ~ &quot;Versicolor&quot;,
+    Species == &quot;setosa&quot; ~ &quot;Setosa&quot;,
+    TRUE ~ &quot;Virginica&quot;))</code></pre>
+<pre><code>## filter: removed 5 rows (3%), 145 rows remaining</code></pre>
+<pre><code>## mutate: new variable &#39;new_name&#39; (character) with 3 unique values and 0% NA</code></pre>
+</div>
+<div id="data-preparation" class="section level2">
+<h2>Data Preparation</h2>
+<p>Use iris dataframe as an example.</p>
+<ul>
+<li><strong>relocate</strong> also support <strong>.after</strong>, and combine use with <strong>where</strong>.</li>
+</ul>
+<pre class="r"><code>dt &lt;- head(iris,5)
+
+# dt %&gt;% select(&quot;Species&quot;, everything(.))
+dt %&gt;% relocate(&quot;Species&quot;, .before = &quot;Sepal.Length&quot;)</code></pre>
+<pre><code>## relocate: columns reordered (Species, Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)</code></pre>
+<pre><code>##   Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1  setosa          5.1         3.5          1.4         0.2
+## 2  setosa          4.9         3.0          1.4         0.2
+## 3  setosa          4.7         3.2          1.3         0.2
+## 4  setosa          4.6         3.1          1.5         0.2
+## 5  setosa          5.0         3.6          1.4         0.2</code></pre>
+<pre class="r"><code># dt %&gt;% relocate(where(is.numeric), .after = where(is.factor))</code></pre>
+<ul>
+<li>Similar concept can be applied to a vector through <strong>SOfun</strong> package. I found this useful when adjusting factor levels. Of course, <strong>fct_reorder</strong> and <strong>fct_relevel</strong> are useful in different situations.</li>
+</ul>
+<pre class="r"><code>library(SOfun)
+v &lt;- letters[1:7]
+v %&gt;% moveMe(., &quot;a last; b, e, g before d; c first; g after b&quot;)</code></pre>
+<pre><code>## [1] &quot;c&quot; &quot;b&quot; &quot;g&quot; &quot;e&quot; &quot;d&quot; &quot;f&quot; &quot;a&quot;</code></pre>
+<ul>
+<li>Another high frequency task is to manage NAs. This is way to spot hidden NAs.</li>
+</ul>
+<pre class="r"><code>hidden_na_dt &lt;- data.frame(
+  &quot;student&quot; = rep(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;),2),
+  &quot;assignment&quot; = rep(c(&quot;A1&quot;, &quot;A2&quot;),3),
+  &quot;mark&quot; = c(NA, runif(n = 5, min = 45, max = 100))
+) %&gt;% 
+  filter(!is.na(mark))</code></pre>
+<pre><code>## filter: removed one row (17%), 5 rows remaining</code></pre>
+<pre class="r"><code>hidden_na_dt</code></pre>
+<pre><code>##   student assignment     mark
+## 1       B         A2 45.85640
+## 2       C         A1 59.34693
+## 3       A         A2 48.39263
+## 4       B         A1 51.47794
+## 5       C         A2 61.05445</code></pre>
+<ul>
+<li>apply <strong>complete</strong> from <strong>dplyr</strong> package to fill 0 in missing mark from assignment 1 for student A. If there is more combinations, multiple items can be nesting in the <strong>complete</strong> argument.</li>
+</ul>
+<pre class="r"><code>hidden_na_dt  %&gt;% 
+  complete(student, nesting(assignment), fill = list(mark = 0))</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   student assignment  mark
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;
+## 1 A       A1           0  
+## 2 A       A2          48.4
+## 3 B       A1          51.5
+## 4 B       A2          45.9
+## 5 C       A1          59.3
+## 6 C       A2          61.1</code></pre>
+</div>
+<div id="data-visualisation" class="section level2">
+<h2>Data Visualisation</h2>
+<p>I believe <strong>ggplot2</strong> / <strong>plotly</strong> is relative popular in practice. I also recommend <strong>highercharter</strong> to visualize timeseries data and/or <strong>visNetwork</strong> / <strong>igraph</strong> / <strong>ggraph</strong> to visualize networks. My focus today is labeling inside a chart, so that I will use <strong>ggplot2</strong> to demonstrate.</p>
+<ul>
+<li>Randomly picked a few countries by max number of population of that country to show potential difference when treating labeling.</li>
+</ul>
+<pre class="r"><code>plt_original &lt;- population %&gt;% 
+  filter(country %in% c(&quot;India&quot;, &quot;United States of America&quot;, &quot;Viet Nam&quot;,
+                        &quot;Lao People&#39;s Democratic Republic&quot;)) %&gt;% 
+  ggplot(aes(x = year, y = population, group = country, color = country))+
+  geom_line()
+
+plt_original</code></pre>
+<p><img src="/post/2020-11-12-basic-but-useful-r-tips_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="functions-that-i-used-to-improve-numeric-formatting" class="section level3">
+<h3>Functions that I used to improve numeric formatting</h3>
+<p>The purpose of having customized functions is to improve readability and reduce cognitive load for digesting information provided by visualization.</p>
+<ul>
+<li>The function I grabbed from stackoverflow and made two adaptations: (1) allow the function to accept negative inputs and (2) expand to recognize trillions.</li>
+</ul>
+<pre class="r"><code>si_num &lt;- function (x) {
+  
+  if (!is.na(x)) {
+    
+    if (x &lt; 0){ 
+      sign &lt;-  &quot;-&quot;
+      x &lt;- abs(x)
+    }else{
+      sign &lt;-  &quot;&quot;
+      x &lt;- x
+    }
+    
+    if (x &gt;= 1e12) { 
+      chrs &lt;- strsplit(format(x, scientific=12), split=&quot;&quot;)[[1]];
+      len &lt;- chrs[seq(1,length(chrs)-12)] %&gt;% length();
+      rem &lt;- chrs[seq(1,length(chrs)-11)];
+      rem &lt;- append(rem, &quot;.&quot;, after = len) %&gt;% append(&quot;T&quot;);
+    }
+        
+    if (x &gt;= 1e9) { 
+      chrs &lt;- strsplit(format(x, scientific=12), split=&quot;&quot;)[[1]];
+      len &lt;- chrs[seq(1,length(chrs)-9)] %&gt;% length();
+      rem &lt;- chrs[seq(1,length(chrs)-8)];
+      rem &lt;- append(rem, &quot;.&quot;, after = len) %&gt;% append(&quot;B&quot;);
+    }
+    
+    
+    else if (x &gt;= 1e6) { 
+      chrs &lt;- strsplit(format(x, scientific=12), split=&quot;&quot;)[[1]];
+      len &lt;- chrs[seq(1,length(chrs)-6)] %&gt;% length();
+      rem &lt;- chrs[seq(1,length(chrs)-5)]
+      rem &lt;- append(rem, &quot;.&quot;, after = len) %&gt;% append(&quot;M&quot;);
+    }
+    
+    else if (x &gt;= 1e3) { 
+      chrs &lt;- strsplit(format(x, scientific=12), split=&quot;&quot;)[[1]];
+      len &lt;- chrs[seq(1,length(chrs)-3)] %&gt;% length();
+      rem &lt;- chrs[seq(1,length(chrs)-2)];
+      rem &lt;- append(rem, &quot;.&quot;, after = len) %&gt;% append(&quot;K&quot;);
+    }
+    
+    else {
+      return(x);
+    }
+    
+    return(str_c(sign, paste(rem, sep=&quot;&quot;, collapse=&quot;&quot;), sep = &quot;&quot;));
+  }
+  else return(NA);
+} 
+
+si_vec &lt;- function(x) {
+  sapply(x, FUN=si_num);
+}</code></pre>
+<ul>
+<li>Modifications include: (1) change graph title and axis titles and format, (2) change a theme: minimalist design, (3) remove legend and add text labels to each line.</li>
+<li>Of course, there are more things: change color pallet defined for country, graph size,…</li>
+</ul>
+<pre class="r"><code>library(hrbrthemes)
+library(scales)
+library(ggrepel)
+library(cowplot)
+
+
+year_series &lt;- unique(population$year)
+reminder &lt;- (max(year_series) - min(year_series)) %% 4
+new_breaks &lt;- seq(from = min(year_series) + reminder, to = max(year_series), by = 4) 
+
+df &lt;- population %&gt;% 
+  filter(country %in% c(&quot;India&quot;, &quot;United States of America&quot;, &quot;Viet Nam&quot;,
+                        &quot;Lao People&#39;s Democratic Republic&quot;)) 
+df_end &lt;- df %&gt;% 
+  group_by(country) %&gt;% 
+  filter(year == max(year)) %&gt;% 
+  ungroup()
+
+plt_adjust &lt;- df %&gt;% 
+  ggplot(aes(x = year, y = population, group = country, color = country))+
+  geom_line()+
+  geom_point()+
+  geom_text_repel(
+    data = df_end,
+    aes(label = str_wrap(country,25)),
+    nudge_x = 1,
+    direction = &quot;y&quot;,## nudge vertically
+    size = 3,
+    hjust = 0, ### left aligned
+    segment.size = 0.3, ### from here is about the line to connect the data point and text
+    min.segment.length = 0,
+    segment.color = &quot;grey60&quot;) + 
+  theme_ipsum() +
+  theme(legend.position = &quot;none&quot;) +
+  scale_y_continuous(labels = si_vec)+
+  scale_x_continuous(breaks = new_breaks, limits = c(NA, 2020))+
+  labs(x = &quot;Year&quot;, y = &quot;Population&quot;, title = &quot;Population Growth between 1995 and 2013&quot;)
+
+
+plt_original</code></pre>
+<p><img src="/post/2020-11-12-basic-but-useful-r-tips_files/figure-html/unnamed-chunk-10-1.png" width="960" /></p>
+<pre class="r"><code>plt_adjust</code></pre>
+<p><img src="/post/2020-11-12-basic-but-useful-r-tips_files/figure-html/unnamed-chunk-10-2.png" width="960" /></p>
+<ul>
+<li>Or, put it into <strong>plotly</strong>, the default hover over message often does not satisfy users, more professional format is recommended to be used in hover over text.</li>
+</ul>
+<pre class="r"><code>library(plotly)
+
+plt_plotly &lt;- df %&gt;% 
+  mutate(text = str_c(&quot;Country: &quot;, country, &quot;\n&quot;,
+                      &quot;Year: &quot;, year, &quot;\n&quot;,
+                      &quot;Population: &quot;, si_vec(population))) %&gt;% 
+  ggplot(aes(x = year, y = population, group = country, color = country, text = text))+
+  geom_line()+
+  geom_point()+
+  theme_ipsum() +
+  theme(legend.position = &quot;none&quot;) +
+  scale_y_continuous(labels = si_vec)+
+  scale_x_continuous(breaks = new_breaks)+
+  labs(x = &quot;Year&quot;, y = &quot;Population&quot;, title = &quot;Population Growth between 1995 and 2013&quot;)
+
+
+
+ggplotly({plt_plotly}, tooltip = &quot;text&quot;)</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"x":[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013],"y":[955804355,973147577,990460131,1007746556,1025014711,1042261758,1059500888,1076705723,1093786762,1110626108,1127143548,1143289350,1159095250,1174662334,1190138069,1205624648,1221156319,1236686732,1252139596],"text":["Country: India<br />Year: 1995<br />Population: 955.8M","Country: India<br />Year: 1996<br />Population: 973.1M","Country: India<br />Year: 1997<br />Population: 990.4M","Country: India<br />Year: 1998<br />Population: 1.0B","Country: India<br />Year: 1999<br />Population: 1.0B","Country: India<br />Year: 2000<br />Population: 1.0B","Country: India<br />Year: 2001<br />Population: 1.0B","Country: India<br />Year: 2002<br />Population: 1.0B","Country: India<br />Year: 2003<br />Population: 1.0B","Country: India<br />Year: 2004<br />Population: 1.1B","Country: India<br />Year: 2005<br />Population: 1.1B","Country: India<br />Year: 2006<br />Population: 1.1B","Country: India<br />Year: 2007<br />Population: 1.1B","Country: India<br />Year: 2008<br />Population: 1.1B","Country: India<br />Year: 2009<br />Population: 1.1B","Country: India<br />Year: 2010<br />Population: 1.2B","Country: India<br />Year: 2011<br />Population: 1.2B","Country: India<br />Year: 2012<br />Population: 1.2B","Country: India<br />Year: 2013<br />Population: 1.2B"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"India","legendgroup":"India","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013],"y":[4871472,4986592,5096724,5200898,5298146,5388281,5470169,5545245,5619069,5699112,5790646,5895930,6013278,6139127,6267968,6395713,6521314,6645827,6769727],"text":["Country: Lao People's Democratic Republic<br />Year: 1995<br />Population: 4.8M","Country: Lao People's Democratic Republic<br />Year: 1996<br />Population: 4.9M","Country: Lao People's Democratic Republic<br />Year: 1997<br />Population: 5.0M","Country: Lao People's Democratic Republic<br />Year: 1998<br />Population: 5.2M","Country: Lao People's Democratic Republic<br />Year: 1999<br />Population: 5.2M","Country: Lao People's Democratic Republic<br />Year: 2000<br />Population: 5.3M","Country: Lao People's Democratic Republic<br />Year: 2001<br />Population: 5.4M","Country: Lao People's Democratic Republic<br />Year: 2002<br />Population: 5.5M","Country: Lao People's Democratic Republic<br />Year: 2003<br />Population: 5.6M","Country: Lao People's Democratic Republic<br />Year: 2004<br />Population: 5.6M","Country: Lao People's Democratic Republic<br />Year: 2005<br />Population: 5.7M","Country: Lao People's Democratic Republic<br />Year: 2006<br />Population: 5.8M","Country: Lao People's Democratic Republic<br />Year: 2007<br />Population: 6.0M","Country: Lao People's Democratic Republic<br />Year: 2008<br />Population: 6.1M","Country: Lao People's Democratic Republic<br />Year: 2009<br />Population: 6.2M","Country: Lao People's Democratic Republic<br />Year: 2010<br />Population: 6.3M","Country: Lao People's Democratic Republic<br />Year: 2011<br />Population: 6.5M","Country: Lao People's Democratic Republic<br />Year: 2012<br />Population: 6.6M","Country: Lao People's Democratic Republic<br />Year: 2013<br />Population: 6.7M"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(124,174,0,1)","dash":"solid"},"hoveron":"points","name":"Lao People's Democratic Republic","legendgroup":"Lao People's Democratic Republic","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(124,174,0,1)"}},"frame":null},{"x":[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013],"y":[268039654,271231546,274606475,278053607,281419130,284594395,287532638,290270187,292883010,295487267,298165797,300942917,303786752,306657153,309491893,312247116,314911752,317505266,320050716],"text":["Country: United States of America<br />Year: 1995<br />Population: 268.0M","Country: United States of America<br />Year: 1996<br />Population: 271.2M","Country: United States of America<br />Year: 1997<br />Population: 274.6M","Country: United States of America<br />Year: 1998<br />Population: 278.0M","Country: United States of America<br />Year: 1999<br />Population: 281.4M","Country: United States of America<br />Year: 2000<br />Population: 284.5M","Country: United States of America<br />Year: 2001<br />Population: 287.5M","Country: United States of America<br />Year: 2002<br />Population: 290.2M","Country: United States of America<br />Year: 2003<br />Population: 292.8M","Country: United States of America<br />Year: 2004<br />Population: 295.4M","Country: United States of America<br />Year: 2005<br />Population: 298.1M","Country: United States of America<br />Year: 2006<br />Population: 300.9M","Country: United States of America<br />Year: 2007<br />Population: 303.7M","Country: United States of America<br />Year: 2008<br />Population: 306.6M","Country: United States of America<br />Year: 2009<br />Population: 309.4M","Country: United States of America<br />Year: 2010<br />Population: 312.2M","Country: United States of America<br />Year: 2011<br />Population: 314.9M","Country: United States of America<br />Year: 2012<br />Population: 317.5M","Country: United States of America<br />Year: 2013<br />Population: 320.0M"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"United States of America","legendgroup":"United States of America","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null},{"x":[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013],"y":[76020043,77166873,78199254,79140734,80027521,80887879,81728768,82547682,83352595,84150651,84947852,85747625,86553201,87369203,88199997,89047397,89913956,90795769,91679733],"text":["Country: Viet Nam<br />Year: 1995<br />Population: 76.0M","Country: Viet Nam<br />Year: 1996<br />Population: 77.1M","Country: Viet Nam<br />Year: 1997<br />Population: 78.1M","Country: Viet Nam<br />Year: 1998<br />Population: 79.1M","Country: Viet Nam<br />Year: 1999<br />Population: 80.0M","Country: Viet Nam<br />Year: 2000<br />Population: 80.8M","Country: Viet Nam<br />Year: 2001<br />Population: 81.7M","Country: Viet Nam<br />Year: 2002<br />Population: 82.5M","Country: Viet Nam<br />Year: 2003<br />Population: 83.3M","Country: Viet Nam<br />Year: 2004<br />Population: 84.1M","Country: Viet Nam<br />Year: 2005<br />Population: 84.9M","Country: Viet Nam<br />Year: 2006<br />Population: 85.7M","Country: Viet Nam<br />Year: 2007<br />Population: 86.5M","Country: Viet Nam<br />Year: 2008<br />Population: 87.3M","Country: Viet Nam<br />Year: 2009<br />Population: 88.1M","Country: Viet Nam<br />Year: 2010<br />Population: 89.0M","Country: Viet Nam<br />Year: 2011<br />Population: 89.9M","Country: Viet Nam<br />Year: 2012<br />Population: 90.7M","Country: Viet Nam<br />Year: 2013<br />Population: 91.6M"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(199,124,255,1)","dash":"solid"},"hoveron":"points","name":"Viet Nam","legendgroup":"Viet Nam","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(199,124,255,1)"}},"frame":null}],"layout":{"margin":{"t":95.7011207970112,"r":39.8505603985056,"b":86.8410128684101,"l":101.452885014529},"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":15.2760481527605},"title":{"text":"<b> Population Growth between 1995 and 2013 <\/b>","font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":23.9103362391034},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1994.1,2013.9],"tickmode":"array","ticktext":["1997","2001","2005","2009","2013"],"tickvals":[1997,2001,2005,2009,2013],"categoryorder":"array","categoryarray":["1997","2001","2005","2009","2013"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"y","title":{"text":"Year","font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-57491934.2,1314503002.2],"tickmode":"array","ticktext":["0","400.0M","800.0M","1.2B"],"tickvals":[0,400000000,800000000,1200000000],"categoryorder":"array","categoryarray":["0","400.0M","800.0M","1.2B"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"x","title":{"text":"Population","font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":12.2208385222084}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"ad26f212787":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"},"ad269aa4910":{"x":{},"y":{},"colour":{},"text":{}}},"cur_data":"ad26f212787","visdat":{"ad26f212787":["function (y) ","x"],"ad269aa4910":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="sessioninfo" class="section level2">
+<h2>SessionInfo</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 4.0.2 (2020-06-22)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Catalina 10.15.7
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] plotly_4.9.2.1   cowplot_1.1.0    ggrepel_0.8.2    scales_1.1.1    
+##  [5] hrbrthemes_0.8.0 SOfun_1.76       tidylog_1.0.2    Hmisc_4.4-1     
+##  [9] Formula_1.2-3    survival_3.1-12  lattice_0.20-41  forcats_0.5.0   
+## [13] stringr_1.4.0    dplyr_1.0.2      purrr_0.3.4      readr_1.4.0     
+## [17] tidyr_1.1.2      tibble_3.0.3     ggplot2_3.3.2    tidyverse_1.3.0 
+## 
+## loaded via a namespace (and not attached):
+##  [1] fs_1.5.0            lubridate_1.7.9     RColorBrewer_1.1-2 
+##  [4] httr_1.4.2          tools_4.0.2         backports_1.1.10   
+##  [7] utf8_1.1.4          R6_2.4.1            rpart_4.1-15       
+## [10] lazyeval_0.2.2      DBI_1.1.0           colorspace_1.4-1   
+## [13] nnet_7.3-14         withr_2.3.0         tidyselect_1.1.0   
+## [16] gridExtra_2.3       compiler_4.0.2      extrafontdb_1.0    
+## [19] cli_2.0.2           rvest_0.3.6         htmlTable_2.1.0    
+## [22] xml2_1.3.2          labeling_0.3        bookdown_0.20      
+## [25] checkmate_2.0.0     systemfonts_0.3.1   digest_0.6.25      
+## [28] foreign_0.8-80      rmarkdown_2.3       base64enc_0.1-3    
+## [31] jpeg_0.1-8.1        pkgconfig_2.0.3     htmltools_0.5.0    
+## [34] extrafont_0.17      dbplyr_1.4.4        htmlwidgets_1.5.1  
+## [37] rlang_0.4.8         readxl_1.3.1        rstudioapi_0.11    
+## [40] generics_0.0.2      farver_2.0.3        jsonlite_1.7.1     
+## [43] crosstalk_1.1.0.1   magrittr_1.5        Matrix_1.2-18      
+## [46] Rcpp_1.0.5          munsell_0.5.0       fansi_0.4.1        
+## [49] gdtools_0.2.2       lifecycle_0.2.0     stringi_1.5.3      
+## [52] yaml_2.2.1          grid_4.0.2          blob_1.2.1         
+## [55] crayon_1.3.4        haven_2.3.1         splines_4.0.2      
+## [58] hms_0.5.3           knitr_1.29          pillar_1.4.6       
+## [61] clisymbols_1.2.0    reprex_0.3.0        glue_1.4.2         
+## [64] evaluate_0.14       blogdown_0.20       latticeExtra_0.6-29
+## [67] data.table_1.13.0   modelr_0.1.8        png_0.1-7          
+## [70] vctrs_0.3.4         Rttf2pt1_1.3.8      cellranger_1.1.0   
+## [73] gtable_0.3.0        assertthat_0.2.1    cpp11_0.2.2        
+## [76] xfun_0.17           broom_0.7.0         viridisLite_0.3.0  
+## [79] cluster_2.1.0       ellipsis_0.3.1</code></pre>
+<div id="at-the-end" class="section level3">
+<h3>At the end</h3>
+<p>To be continue, I have coded many interactive plots in shinyapps, and some can be found from <a href="https://coffeeandplot.com/apps/" class="uri">https://coffeeandplot.com/apps/</a>. This is a relatively new website we created couples of month ago. Get in touch if you have any suggestions. Please find me @ <a href="https://www.linkedin.com/in/ytsong/" class="uri">https://www.linkedin.com/in/ytsong/</a>.</p>
+</div>
+</div>

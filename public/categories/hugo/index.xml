@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on YTSONG&#39;s HOME</title>
+    <link>/categories/hugo/</link>
+    <description>Recent content in hugo on YTSONG&#39;s HOME</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 13 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Personal Website</title>
+      <link>/project/personal-website/</link>
+      <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/project/personal-website/</guid>
+      <description>This post records my journey of building this personal website powered by hugo, R and netflip. It suits for R coders and anyone would like to customise themes from &amp;lsquo;Giants&amp;rsquo; shoulders&#39;.
+Step 1. Look around hugo themes Jump on Hugo Themes Complete List and go through demos to identify theme of interests. I feel that I relates to Hugo Nix theme.
+Step 2. Install Hugo Go to hugo releases and download an appropriate version for your operating system.</description>
+    </item>
+    
+  </channel>
+</rss>

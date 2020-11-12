@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1599980018748.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3267874683",
+    "id" : "882823E",
+    "lastKnownWriteTime" : 1599984094,
+    "last_content_update" : 1599984094799,
+    "path" : "~/Dropbox/personal_website_hugo-theme-nix/content/project/2020-09-13-personal-website.md",
+    "project_path" : "content/project/2020-09-13-personal-website.md",
+    "properties" : {
+        "cursorPosition" : "24,45",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}

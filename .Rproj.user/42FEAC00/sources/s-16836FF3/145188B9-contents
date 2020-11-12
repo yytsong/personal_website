@@ -1,0 +1,37 @@
+baseurl = "/"
+title = "YTSONG's HOME"
+theme = "hugo-theme-nix"
+languageCode = "en-us"
+#disqusShortname = "your_disqus_shortname"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+
+[menu]
+  [[menu.header]]
+    name = "post"
+    weight = 1
+    url = "post"
+  [[menu.header]]
+    name = "about"
+    weight = 2
+    url = "about"
+#  [[menu.header]]
+#    name = "project"
+#    weight = 2
+#    url = "project"
+
+[params]
+  GithubID = "yytsong"
+  TwitterID = "yurisyt"
+  LinkedInID = "ytsong"
+  TelegramID = ""
+  FacebookID = "yuri.yutong.song"
+  InstagramID = "ytsong65"
+  Name = "Yutong Song"
+  HeaderUsername = ""
+  HeaderHostname = ""
+  Email = "yuri.songyt@gmail.com"
+  About = "Hi I'm Yutong and this is my personal website. I am a senior strategic analyst, R enthusiasm and lifelong learner. Yes, I have a bachelor in software engineering, a master (on track to a second master) and a doctoral degree in business information systems, this journey drives me to be even more curious about the world that I do not know. Here, you can expect projects and blog posts from my 'wild' imagination. Enjoy your visit!"
+  ProfilePicture = "/IMG_0743.JPG"
+  Favicon = ""
+

@@ -1,0 +1,35 @@
+baseurl = "http://example.org/"
+title = "Hugo Website"
+theme = "hugo-theme-nix"
+languageCode = "en-us"
+disqusShortname = "your_disqus_shortname"
+
+[menu]
+  [[menu.header]]
+    name = "post"
+    weight = 0
+    url = "post"
+  [[menu.header]]
+    name = "about"
+    weight = 1
+    url = "about"
+  [[menu.header]]
+    name = "project"
+    weight = 1
+    url = "project"
+
+[params]
+  GithubID = "yytsong"
+  TwitterID = "yurisyt"
+  LinkedInID = "ytsong"
+  TelegramID = ""
+  FacebookID = "yuri.yutong.song"
+  InstagramID = "ytsong65"
+  Name = "Yutong Song"
+  HeaderUsername = ""
+  HeaderHostname = ""
+  Email = "yuri.songyt@gmail.com"
+  About = "Hi I'm Yutong and this is my personal website. I am a senior strategic analyst, R enthusiasm and lifelong learner. Yes, I have a bachelor, a master and a doctoral degree, this journey drives me to be even more curious about the world that I do not know. On this website, you can expect projects and blog posts from my 'wild' imagination. Enjoy your visit!"
+  ProfilePicture = "/IMG_0743.JPG"
+  Favicon = ""
+

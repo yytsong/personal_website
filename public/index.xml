@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>YTSONG&#39;s HOME</title>
+    <link>/</link>
+    <description>Recent content on YTSONG&#39;s HOME</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a New Theme</title>
+      <link>/archive/creating-a-new-theme/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/creating-a-new-theme/</guid>
+      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
+We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
+    </item>
+    
+    <item>
+      <title>Migrate to Hugo from Jekyll</title>
+      <link>/archive/migrate-from-jekyll/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/migrate-from-jekyll/</guid>
+      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
+▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
+▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>This is a simple personal website.
+I acknowledge the use of the following but not limited to the following resource to build this website. This website is made on hugo and hosted on Netlify.
+ The author of hugo theme nix writes:
+Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>Basic but Useful R Tips</title>
+      <link>/post/basic-but-useful-r-tips/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/basic-but-useful-r-tips/</guid>
+      <description>Data Exploration I code in tidyverse universe plus tidylog to output all message corresponding to changes made to vector, dataframe, tibble, etc. Please find tidylog package @ https://github.com/elbersb/tidylog.
+ An initial step is often to preview a dataset. An alternative to summary is describe in Hmisc package. The benefits will be it counts number of NAs as summary does, but it also show a frequency table for factor/character.</description>
+    </item>
+    
+    <item>
+      <title>R Shiny Tips</title>
+      <link>/post/r-shiny-tips/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-shiny-tips/</guid>
+      <description>  Tips from Tidyverse  </description>
+    </item>
+    
+    <item>
+      <title>[Python] Install Python3 and make it default on macOS Catalina</title>
+      <link>/archive/python-install-python3-and-make-it-default-on-macos-catalina/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/python-install-python3-and-make-it-default-on-macos-catalina/</guid>
+      <description>Resource: https://www.youtube.com/watch?v=0rg6nyanX5Y  Comment: A nature and easy step-by-step guide to install Python3 using homebrew on macOS Catalina Version 10.15.7. Up in front, this mentor explained (1) switch command line to zsh instead of bash; (2) benefits of utilizing homebrew instead of anaconda for setting up python environment; (3) additional link for Mojave. This method also enables pip install of python packages, and make python3 default choice when calling python by updating .</description>
+    </item>
+    
+    <item>
+      <title>Personal Website</title>
+      <link>/project/personal-website/</link>
+      <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/project/personal-website/</guid>
+      <description>This post records my journey of building this personal website powered by hugo, R and netflip. It suits for R coders and anyone would like to customise themes from &amp;lsquo;Giants&amp;rsquo; shoulders&#39;.
+Step 1. Look around hugo themes Jump on Hugo Themes Complete List and go through demos to identify theme of interests. I feel that I relates to Hugo Nix theme.
+Step 2. Install Hugo Go to hugo releases and download an appropriate version for your operating system.</description>
+    </item>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/archive/2015-07-23-r-rmarkdown/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/archive/2015-07-23-r-rmarkdown/</guid>
+      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+You can embed an R code chunk like this:
+summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+    </item>
+    
+    <item>
+      <title>(Hu)go Template Primer</title>
+      <link>/archive/goisforlovers/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/goisforlovers/</guid>
+      <description>Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
+This document is a brief primer on using go templates.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with Hugo</title>
+      <link>/archive/hugoisforlovers/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/hugoisforlovers/</guid>
+      <description>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
+Save it somewhere specific as we will be using it in the next step.
+More complete instructions are available at installing hugo
+Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
+Follow the following steps:
+ Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+    </item>
+    
+  </channel>
+</rss>

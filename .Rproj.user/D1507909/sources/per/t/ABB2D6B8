@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1599976565863.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "337328685",
+    "id" : "ABB2D6B8",
+    "lastKnownWriteTime" : 1601295954,
+    "last_content_update" : 1601295954068,
+    "path" : "~/Dropbox/personal_website_hugo-theme-nix/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "31,165",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}
