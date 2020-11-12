@@ -34,4 +34,5 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   About = "Hi I'm Yutong and this is my personal website. I am a senior strategic analyst, R enthusiasm and lifelong learner. Yes, I have a bachelor in software engineering, a master (on track to a second master) and a doctoral degree in business information systems, this journey drives me to be even more curious about the world that I do not know. Here, you can expect projects and blog posts from my 'wild' imagination. Enjoy your visit!"
   ProfilePicture = "/IMG_0743.JPG"
   Favicon = ""
+  images = "/IMG_0743.JPG"
 
