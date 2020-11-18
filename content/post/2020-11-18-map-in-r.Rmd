@@ -1,0 +1,140 @@
+---
+title: Map in R
+author: Yutong Song
+date: '2020-11-18'
+slug: map-in-r
+categories:
+  - R
+tags:
+  - map
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,eval=FALSE)
+library(tidyverse)
+library(sf)
+```
+
+## Reading and writing spatial data in R
+
+Download SA files in ESRI Shapefile Format from <https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument>. 
+Source: <https://medium.com/analytics-vidhya/mapping-australia-in-r-6ce092c48b49> 
+
+
+```{r}
+
+AUS_SA2_shp <- read_sf("data/map/1270055001_sa2_2016_aust_shape","SA2_2016_AUST")
+st_write(AUS_SA2_shp, "data/sa2_dt", driver="ESRI Shapefile")
+
+```
+
+Another post about reading and writing spatial data <https://mgimond.github.io/Spatial/reading-and-writing-spatial-data-in-r.html#exporting-to-different-data-file-formats>
+
+## Package comparison:
+
+- baseR
+- ggplot2
+- tmap
+- ggmap
+- Leaflet
+
+
+### baseR
+
+Source: <https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html>
+
+
+### ggplot2
+
+Using **geom_sf** on Mac is super slow if it is even possible. People suggest to install **Quartz** on Mac OS. This post discuss performance issue of Quartz and X11. 
+Source: <https://community.rstudio.com/t/ggplot2-geom-sf-performance/3251>; 
+Another post: <https://stackoverflow.com/questions/51126014/why-does-tmap-render-80-times-faster-than-ggplot2-plotting-shapefiles-in-r-wit>
+
+
+
+```{r}
+
+library("grDevices")
+## geom_sf with X11
+X11(type = "cairo")
+system.time(print(plt))
+
+ggplot() +
+  geom_sf(data = plt_df,
+          aes(fill = value_of_focus)) +
+  ggtitle("Australian 'value_of_focus' (SA2)") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  theme_bw() +
+  theme(legend.position = "right",
+        legend.title = element_text("value_of_focus"))+
+  scale_fill_continuous(label = scales::label_number_si())
+
+ggsave("data/map.png", units="cm",dpi=200, device="png")
+
+graphics.off()
+
+```
+
+
+### tmap
+
+**tmap** is a fast generated map package that creates static maps with coloring. 
+Source: <https://rpubs.com/quarcs-lab/tutorial-maps-in-r>
+
+```{r}
+library(tmap)
+
+tm_shape(plt_df) +
+  tm_polygons("val",
+              style = "quantile",
+              title = "Building Approval - Private - Value")
+
+```
+
+### ggmap
+
+Source: <https://cengel.github.io/R-spatial/mapping.html>
+
+### Leaflet
+
+Leaflet can be used in Shiny app to create interactive maps. Here is an example of fill the map with a number of quantile groups of 5. An common error is that multiple quantities have the same value, and one method to solve this issue is to go through a while loop to reduce number of quantile. 
+Source: <https://github.com/rstudio/leaflet/issues/94>
+
+```{r}
+quantileNum <- 5
+
+ vals <- plt_df$val_yoy
+# probs <- seq(0, 1, length.out = quantileNum)
+# bins <- quantile(vals, probs, na.rm = TRUE, names = FALSE)
+
+probs <- seq(0, 1, length.out = quantileNum + 1)
+bins <- quantile(vals, probs, na.rm = TRUE, names = FALSE)
+while (length(unique(bins)) != length(bins)) {
+  quantileNum <- quantileNum - 1
+  probs <- seq(0, 1, length.out = quantileNum + 1)
+  bins <- quantile(vals, probs, na.rm = TRUE, names = FALSE)
+}
+
+pal_fun <- colorQuantile("YlOrRd", NULL, n = quantileNum)
+p_popup <- paste0(plt_df$SA2_NAME16,"\n","<strong>Value: </strong>", scales::percent(plt_df$val_yoy,accuracy = 0.01))
+
+leaflet(plt_df) %>% 
+  addPolygons(
+    stroke = FALSE, # remove polygon borders
+    fillColor = ~pal_fun(val_yoy), # set fill color with function from above and value
+    fillOpacity = 0.8, smoothFactor = 0.5, # make it nicer
+    popup = p_popup  # add popup
+    ) %>%
+  addTiles() %>%  # add in base map
+  addLegend("bottomright",  # location
+            pal= pal_fun,    # palette function
+            values= ~ dwl_yoy,  # value to be passed to palette function
+            title = 'YOY Change by No. of Dwellings') # legend title
+```
+
+
+### Other supplementary sources
+
+Source 1. Experiments with sf (spatial data in r) <https://rstudio-pubs-static.s3.amazonaws.com/488297_b0b54ede7c844e639e47dff70c028b37.html>
+Source 2. Drawing beautiful maps programmatically with R, sf and ggplot2 — Part 1: Basics <https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html>

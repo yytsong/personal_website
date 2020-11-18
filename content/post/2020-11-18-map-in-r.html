@@ -1,0 +1,114 @@
+---
+title: Map in R
+author: Yutong Song
+date: '2020-11-18'
+slug: map-in-r
+categories:
+  - R
+tags:
+  - map
+---
+
+
+
+<div id="reading-and-writing-spatial-data-in-r" class="section level2">
+<h2>Reading and writing spatial data in R</h2>
+<p>Download SA files in ESRI Shapefile Format from <a href="https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument" class="uri">https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument</a>.
+Source: <a href="https://medium.com/analytics-vidhya/mapping-australia-in-r-6ce092c48b49" class="uri">https://medium.com/analytics-vidhya/mapping-australia-in-r-6ce092c48b49</a></p>
+<pre class="r"><code>AUS_SA2_shp &lt;- read_sf(&quot;data/map/1270055001_sa2_2016_aust_shape&quot;,&quot;SA2_2016_AUST&quot;)
+st_write(AUS_SA2_shp, &quot;data/sa2_dt&quot;, driver=&quot;ESRI Shapefile&quot;)</code></pre>
+<p>Another post about reading and writing spatial data <a href="https://mgimond.github.io/Spatial/reading-and-writing-spatial-data-in-r.html#exporting-to-different-data-file-formats" class="uri">https://mgimond.github.io/Spatial/reading-and-writing-spatial-data-in-r.html#exporting-to-different-data-file-formats</a></p>
+</div>
+<div id="package-comparison" class="section level2">
+<h2>Package comparison:</h2>
+<ul>
+<li>baseR</li>
+<li>ggplot2</li>
+<li>tmap</li>
+<li>ggmap</li>
+<li>Leaflet</li>
+</ul>
+<div id="baser" class="section level3">
+<h3>baseR</h3>
+<p>Source: <a href="https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html" class="uri">https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html</a></p>
+</div>
+<div id="ggplot2" class="section level3">
+<h3>ggplot2</h3>
+<p>Using <strong>geom_sf</strong> on Mac is super slow if it is even possible. People suggest to install <strong>Quartz</strong> on Mac OS. This post discuss performance issue of Quartz and X11.
+Source: <a href="https://community.rstudio.com/t/ggplot2-geom-sf-performance/3251" class="uri">https://community.rstudio.com/t/ggplot2-geom-sf-performance/3251</a>;
+Another post: <a href="https://stackoverflow.com/questions/51126014/why-does-tmap-render-80-times-faster-than-ggplot2-plotting-shapefiles-in-r-wit" class="uri">https://stackoverflow.com/questions/51126014/why-does-tmap-render-80-times-faster-than-ggplot2-plotting-shapefiles-in-r-wit</a></p>
+<pre class="r"><code>library(&quot;grDevices&quot;)
+## geom_sf with X11
+X11(type = &quot;cairo&quot;)
+system.time(print(plt))
+
+ggplot() +
+  geom_sf(data = plt_df,
+          aes(fill = value_of_focus)) +
+  ggtitle(&quot;Australian &#39;value_of_focus&#39; (SA2)&quot;) +
+  xlab(&quot;Longitude&quot;) +
+  ylab(&quot;Latitude&quot;) +
+  theme_bw() +
+  theme(legend.position = &quot;right&quot;,
+        legend.title = element_text(&quot;value_of_focus&quot;))+
+  scale_fill_continuous(label = scales::label_number_si())
+
+ggsave(&quot;data/map.png&quot;, units=&quot;cm&quot;,dpi=200, device=&quot;png&quot;)
+
+graphics.off()</code></pre>
+</div>
+<div id="tmap" class="section level3">
+<h3>tmap</h3>
+<p><strong>tmap</strong> is a fast generated map package that creates static maps with coloring.
+Source: <a href="https://rpubs.com/quarcs-lab/tutorial-maps-in-r" class="uri">https://rpubs.com/quarcs-lab/tutorial-maps-in-r</a></p>
+<pre class="r"><code>library(tmap)
+
+tm_shape(plt_df) +
+  tm_polygons(&quot;val&quot;,
+              style = &quot;quantile&quot;,
+              title = &quot;Building Approval - Private - Value&quot;)</code></pre>
+</div>
+<div id="ggmap" class="section level3">
+<h3>ggmap</h3>
+<p>Source: <a href="https://cengel.github.io/R-spatial/mapping.html" class="uri">https://cengel.github.io/R-spatial/mapping.html</a></p>
+</div>
+<div id="leaflet" class="section level3">
+<h3>Leaflet</h3>
+<p>Leaflet can be used in Shiny app to create interactive maps. Here is an example of fill the map with a number of quantile groups of 5. An common error is that multiple quantities have the same value, and one method to solve this issue is to go through a while loop to reduce number of quantile.
+Source: <a href="https://github.com/rstudio/leaflet/issues/94" class="uri">https://github.com/rstudio/leaflet/issues/94</a></p>
+<pre class="r"><code>quantileNum &lt;- 5
+
+ vals &lt;- plt_df$val_yoy
+# probs &lt;- seq(0, 1, length.out = quantileNum)
+# bins &lt;- quantile(vals, probs, na.rm = TRUE, names = FALSE)
+
+probs &lt;- seq(0, 1, length.out = quantileNum + 1)
+bins &lt;- quantile(vals, probs, na.rm = TRUE, names = FALSE)
+while (length(unique(bins)) != length(bins)) {
+  quantileNum &lt;- quantileNum - 1
+  probs &lt;- seq(0, 1, length.out = quantileNum + 1)
+  bins &lt;- quantile(vals, probs, na.rm = TRUE, names = FALSE)
+}
+
+pal_fun &lt;- colorQuantile(&quot;YlOrRd&quot;, NULL, n = quantileNum)
+p_popup &lt;- paste0(plt_df$SA2_NAME16,&quot;\n&quot;,&quot;&lt;strong&gt;Value: &lt;/strong&gt;&quot;, scales::percent(plt_df$val_yoy,accuracy = 0.01))
+
+leaflet(plt_df) %&gt;% 
+  addPolygons(
+    stroke = FALSE, # remove polygon borders
+    fillColor = ~pal_fun(val_yoy), # set fill color with function from above and value
+    fillOpacity = 0.8, smoothFactor = 0.5, # make it nicer
+    popup = p_popup  # add popup
+    ) %&gt;%
+  addTiles() %&gt;%  # add in base map
+  addLegend(&quot;bottomright&quot;,  # location
+            pal= pal_fun,    # palette function
+            values= ~ dwl_yoy,  # value to be passed to palette function
+            title = &#39;YOY Change by No. of Dwellings&#39;) # legend title</code></pre>
+</div>
+<div id="other-supplementary-sources" class="section level3">
+<h3>Other supplementary sources</h3>
+<p>Source 1. Experiments with sf (spatial data in r) <a href="https://rstudio-pubs-static.s3.amazonaws.com/488297_b0b54ede7c844e639e47dff70c028b37.html" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/488297_b0b54ede7c844e639e47dff70c028b37.html</a>
+Source 2. Drawing beautiful maps programmatically with R, sf and ggplot2 — Part 1: Basics <a href="https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html" class="uri">https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html</a></p>
+</div>
+</div>

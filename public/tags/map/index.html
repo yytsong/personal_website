@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-    <head>
-        <title> R Shiny Tips &middot; YTSONG&#39;s HOME </title>
+	<head>
+		<title> map &middot; YTSONG&#39;s HOME </title>
 
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="generator" content="Hugo 0.75.1" />
 
@@ -35,10 +35,10 @@
 
 
 
-    </head>
+	</head>
 
-    <body>
-        <header>
+	<body>
+		<header>
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse font-header">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -82,26 +82,38 @@
 </nav>
 </header>
 
-        <div class="flex-wrapper">
-            <div class="container wrapper">
-                <h1><a href="/post/r-shiny-tips/">R Shiny Tips</a></h1>
-                <span class="post-date">2020-11-12 </span>
-                <div class="post-content">
-                    
+		<div class="flex-wrapper">
+			<div class="container wrapper">
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<h1 id=>map</h1>
+					</div>
+				</div>
+				<ul id="post-list">
+						
+					<li>
+						<div class="post-list-item">
+							<div class="post-header">
+								<h4 class="post-link"><a href="/post/map-in-r/">Map in R</a></h4>
+								<h4 class="post-date">2020-11-18</h4>
+							</div>
+							<div class="post-summary"><p>Reading and writing spatial data in R Download SA files in ESRI Shapefile Format from https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument. Source: https://medium.com/analytics-vidhya/mapping-australia-in-r-6ce092c48b49
+AUS_SA2_shp &lt;- read_sf(&quot;data/map/1270055001_sa2_2016_aust_shape&quot;,&quot;SA2_2016_AUST&quot;) st_write(AUS_SA2_shp, &quot;data/sa2_dt&quot;, driver=&quot;ESRI Shapefile&quot;) Another post about reading and writing spatial data https://mgimond.github.io/Spatial/reading-and-writing-spatial-data-in-r.html#exporting-to-different-data-file-formats
+ Package comparison:  baseR ggplot2 tmap ggmap Leaflet  baseR Source: https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html
+ ggplot2 Using geom_sf on Mac is super slow if it is even possible. People suggest to install Quartz on Mac OS. This post discuss performance issue of Quartz and X11.</p></div>
+							<div class="post-list-footer text-center">
+								<a href="/post/map-in-r/">Read More</a>
+							</div>
+						</div>
+					</li>
+				
+				</ul>
+				
 
 
-<ul>
-<li>Tips from Tidyverse</li>
-</ul>
 
-                </div>
-                
-                <div class="post-comments">
-                    
-                </div>
-                
-            </div>
-            <footer class="footer text-center">
+			</div>
+			<footer class="footer text-center">
 <p>Copyright &copy; 2020 Yutong Song -
 <span class="credit">
 	Powered by
@@ -112,5 +124,6 @@
 </p>
 </footer>
 
-        </div>
-    </body>
+		</div>
+	</body>
+</html>

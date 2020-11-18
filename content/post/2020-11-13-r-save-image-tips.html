@@ -1,0 +1,35 @@
+---
+title: R Saving Image Tips
+author: Yutong Song
+date: '2020-11-13'
+slug: r-saving-image-tips
+categories:
+  - R
+tags:
+  - R
+  - Shiny
+series:
+  - Tips
+---
+
+
+
+<div id="create-new-directory" class="section level2">
+<h2>Create new directory</h2>
+<p>My habit is to create a suffix with system date to archive different versions of graphs. However, one can also use different folder names to manage archives. <strong>dir.create</strong> exists in base R.</p>
+<pre class="r"><code># Name a folder with name test and system date as suffix
+folder_name &lt;- str_c(&quot;test_&quot;, Sys.Date())
+
+# Create a folder with the name set above
+dir.create(folder_name)
+
+# Create sub-folder with name subfolder1
+dir.create(file.path(folder_name, &quot;subfolder1&quot;))</code></pre>
+</div>
+<div id="save-images-into-the-directory" class="section level2">
+<h2>Save images into the directory</h2>
+<p>Deal with saving a number of plots is to generate all plots first, name them, and then passing their names and actual plots as lists into map2. Using name as part of the file name, and the plot as the content. <strong>ggsave</strong> (from ggplot2 package) is super useful in this context.</p>
+<pre class="r"><code>map2(names_of_plots, plots,
+     ~ ggsave(str_c(folder_name, &quot;/subfolder1/&quot;, .x, &quot;.png&quot;), .y,
+              width = 10, height = 20))</code></pre>
+</div>

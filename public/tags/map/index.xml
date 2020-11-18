@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>map on YTSONG&#39;s HOME</title>
+    <link>/tags/map/</link>
+    <description>Recent content in map on YTSONG&#39;s HOME</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/map/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Map in R</title>
+      <link>/post/map-in-r/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/map-in-r/</guid>
+      <description>Reading and writing spatial data in R Download SA files in ESRI Shapefile Format from https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument. Source: https://medium.com/analytics-vidhya/mapping-australia-in-r-6ce092c48b49
+AUS_SA2_shp &amp;lt;- read_sf(&amp;quot;data/map/1270055001_sa2_2016_aust_shape&amp;quot;,&amp;quot;SA2_2016_AUST&amp;quot;) st_write(AUS_SA2_shp, &amp;quot;data/sa2_dt&amp;quot;, driver=&amp;quot;ESRI Shapefile&amp;quot;) Another post about reading and writing spatial data https://mgimond.github.io/Spatial/reading-and-writing-spatial-data-in-r.html#exporting-to-different-data-file-formats
+ Package comparison:  baseR ggplot2 tmap ggmap Leaflet  baseR Source: https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html
+ ggplot2 Using geom_sf on Mac is super slow if it is even possible. People suggest to install Quartz on Mac OS. This post discuss performance issue of Quartz and X11.</description>
+    </item>
+    
+  </channel>
+</rss>

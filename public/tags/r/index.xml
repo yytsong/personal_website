@@ -6,7 +6,17 @@
     <description>Recent content in R on YTSONG&#39;s HOME</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R Saving Image Tips</title>
+      <link>/post/r-saving-image-tips/</link>
+      <pubDate>Fri, 13 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-saving-image-tips/</guid>
+      <description>Create new directory My habit is to create a suffix with system date to archive different versions of graphs. However, one can also use different folder names to manage archives. dir.create exists in base R.
+# Name a folder with name test and system date as suffix folder_name &amp;lt;- str_c(&amp;quot;test_&amp;quot;, Sys.Date()) # Create a folder with the name set above dir.create(folder_name) # Create sub-folder with name subfolder1 dir.create(file.path(folder_name, &amp;quot;subfolder1&amp;quot;))  Save images into the directory Deal with saving a number of plots is to generate all plots first, name them, and then passing their names and actual plots as lists into map2.</description>
+    </item>
+    
     <item>
       <title>Basic but Useful R Tips</title>
       <link>/post/basic-but-useful-r-tips/</link>
@@ -15,15 +25,6 @@
       <guid>/post/basic-but-useful-r-tips/</guid>
       <description>Data Exploration I code in tidyverse universe plus tidylog to output all message corresponding to changes made to vector, dataframe, tibble, etc. Please find tidylog package @ https://github.com/elbersb/tidylog.
  An initial step is often to preview a dataset. An alternative to summary is describe in Hmisc package. The benefits will be it counts number of NAs as summary does, but it also show a frequency table for factor/character.</description>
-    </item>
-    
-    <item>
-      <title>R Shiny Tips</title>
-      <link>/post/r-shiny-tips/</link>
-      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/r-shiny-tips/</guid>
-      <description>  Tips from Tidyverse  </description>
     </item>
     
   </channel>

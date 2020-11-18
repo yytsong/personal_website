@@ -226,7 +226,7 @@ plt_adjust <- df %>%
   theme_ipsum() +
   theme(legend.position = "none") +
   scale_y_continuous(labels = si_vec)+
-  scale_x_continuous(breaks = new_breaks, limits = c(NA, 2020))+
+  scale_x_continuous(breaks = new_breaks, limits = c(NA, 2017))+
   labs(x = "Year", y = "Population", title = "Population Growth between 1995 and 2013")
 
 
