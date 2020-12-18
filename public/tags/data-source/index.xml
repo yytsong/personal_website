@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data-Source on YTSONG&#39;s HOME</title>
+    <link>/tags/data-source/</link>
+    <description>Recent content in Data-Source on YTSONG&#39;s HOME</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/data-source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Data Source - Research</title>
+      <link>/post/data-source-research/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/data-source-research/</guid>
+      <description> ASJC - All Science Journal Classification  List of journal classifications Source: https://pg.edu.pl/documents/611754/75313317/asjc
+ Full code list with category description Source: https://www.journalsindexed.com/2016/06/asjc-code-list.html
+   </description>
+    </item>
+    
+  </channel>
+</rss>

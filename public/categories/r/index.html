@@ -94,13 +94,28 @@
 					<li>
 						<div class="post-list-item">
 							<div class="post-header">
+								<h4 class="post-link"><a href="/post/r-colour-tips/">R Colour Tips</a></h4>
+								<h4 class="post-date">2020-11-19</h4>
+							</div>
+							<div class="post-summary"><p> Fast sample colour Sample a number of colours from a color pallet.
+Colorsred = rev (c(brewer.pal(6,&quot;Reds&quot;))) Colorsred ## [1] &quot;#A50F15&quot; &quot;#DE2D26&quot; &quot;#FB6A4A&quot; &quot;#FC9272&quot; &quot;#FCBBA1&quot; &quot;#FEE5D9&quot;  RColorBrewer book Source: https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html
+library(RColorBrewer) display.brewer.all()  </p></div>
+							<div class="post-list-footer text-center">
+								<a href="/post/r-colour-tips/">Read More</a>
+							</div>
+						</div>
+					</li>
+				
+					<li>
+						<div class="post-list-item">
+							<div class="post-header">
 								<h4 class="post-link"><a href="/post/map-in-r/">Map in R</a></h4>
 								<h4 class="post-date">2020-11-18</h4>
 							</div>
 							<div class="post-summary"><p>Reading and writing spatial data in R Download SA files in ESRI Shapefile Format from https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument. Source: https://medium.com/analytics-vidhya/mapping-australia-in-r-6ce092c48b49
 AUS_SA2_shp &lt;- read_sf(&quot;data/map/1270055001_sa2_2016_aust_shape&quot;,&quot;SA2_2016_AUST&quot;) st_write(AUS_SA2_shp, &quot;data/sa2_dt&quot;, driver=&quot;ESRI Shapefile&quot;) Another post about reading and writing spatial data https://mgimond.github.io/Spatial/reading-and-writing-spatial-data-in-r.html#exporting-to-different-data-file-formats
- Package comparison:  baseR ggplot2 tmap ggmap Leaflet  baseR Source: https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html
- ggplot2 Using geom_sf on Mac is super slow if it is even possible. People suggest to install Quartz on Mac OS. This post discuss performance issue of Quartz and X11.</p></div>
+ Package comparison:  baseR ggplot2 tmap ggmap Leaflet mapdeck  baseR Source: https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html
+ ggplot2 Using geom_sf on Mac is super slow if it is even possible. People suggest to install Quartz on Mac OS.</p></div>
 							<div class="post-list-footer text-center">
 								<a href="/post/map-in-r/">Read More</a>
 							</div>

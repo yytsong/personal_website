@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> R Colour Tips &middot; YTSONG&#39;s HOME </title>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.75.1" />
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="/css/nix.css">
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Inconsolata%7COpen+Sans%7CConcert+One" rel="stylesheet">
+
+
+
+
+
+
+    </head>
+
+    <body>
+        <header>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse font-header">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+      <a class="navbar-brand" id="green-terminal" href='/'>
+        @ ~ $
+      </a>
+		</div>
+
+		
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href='/'>/home/</a>
+        </li>
+        
+				
+				
+				<li class="dropdown">
+                    
+            		<a href="/post">~/post</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="/about">~/about</a>
+            		
+        		</li>
+        		
+
+			</ul>
+		</div>
+	</div>
+</nav>
+</header>
+
+        <div class="flex-wrapper">
+            <div class="container wrapper">
+                <h1><a href="/post/r-colour-tips/">R Colour Tips</a></h1>
+                <span class="post-date">2020-11-19 </span>
+                <div class="post-content">
+                    
+
+
+<div id="fast-sample-colour" class="section level2">
+<h2>Fast sample colour</h2>
+<p>Sample a number of colours from a color pallet.</p>
+<pre class="r"><code>Colorsred = rev (c(brewer.pal(6,&quot;Reds&quot;)))
+Colorsred</code></pre>
+<pre><code>## [1] &quot;#A50F15&quot; &quot;#DE2D26&quot; &quot;#FB6A4A&quot; &quot;#FC9272&quot; &quot;#FCBBA1&quot; &quot;#FEE5D9&quot;</code></pre>
+</div>
+<div id="rcolorbrewer-book" class="section level2">
+<h2>RColorBrewer book</h2>
+<p>Source: <a href="https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html" class="uri">https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html</a></p>
+<pre class="r"><code>library(RColorBrewer)
+display.brewer.all()</code></pre>
+<p><img src="/post/2020-11-19-r-colour-tips_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+
+                </div>
+                
+                <div class="post-comments">
+                    
+                </div>
+                
+            </div>
+            <footer class="footer text-center">
+<p>Copyright &copy; 2020 Yutong Song -
+<span class="credit">
+	Powered by
+	<a target="_blank" href="https://gohugo.io">Hugo</a>
+	and
+	<a target="_blank" href="https://github.com/LordMathis/hugo-theme-nix/">Nix</a> theme.
+</span>
+</p>
+</footer>
+
+        </div>
+    </body>

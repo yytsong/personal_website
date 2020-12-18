@@ -1,0 +1,108 @@
+---
+title: Customise dateRangeInput
+author: Yutong Song
+date: '2020-12-18'
+slug: customise-daterangeinput
+categories:
+  - ShinyApp
+tags:
+  - daterange
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, eval = FALSE)
+library(tidyverse)
+```
+
+
+## Option A: fix dateRangeInput
+
+- source: https://stackoverflow.com/questions/41012125/r-shiny-daterange-input-month-year-only
+- further development: https://stackoverflow.com/questions/31152960/display-only-months-in-daterangeinput-or-dateinput-for-a-shiny-app-r-programmin
+
+
+Step 1 is to customize `dateInput` and `dateRangeInput`.
+
+```{r}
+library(shiny)
+library(lubridate)
+
+dateInput2 <- function(inputId, label, minview = "days", maxview = "decades", ...) {
+  d <- shiny::dateInput(inputId, label, ...)
+  d$children[[2L]]$attribs[["data-date-min-view-mode"]] <- minview
+  d$children[[2L]]$attribs[["data-date-max-view-mode"]] <- maxview
+  d
+}
+
+dateRangeInput2 <- function(inputId, label, minview = "days", maxview = "decades", ...) {
+  d <- shiny::dateRangeInput(inputId, label, ...)
+  d$children[[2L]]$children[[1]]$attribs[["data-date-min-view-mode"]] <- minview
+  d$children[[2L]]$children[[3]]$attribs[["data-date-min-view-mode"]] <- minview
+  d$children[[2L]]$children[[1]]$attribs[["data-date-max-view-mode"]] <- maxview
+  d$children[[2L]]$children[[3]]$attribs[["data-date-max-view-mode"]] <- maxview
+  d
+}
+
+```
+
+
+Step 2 is to apply in a minimum example.
+
+```{r}
+library(shiny)
+shinyApp(
+  ui = fluidPage(
+    dateInput2("test1", "Year", startview = "year", minview = "months", maxview = "decades"),
+    dateRangeInput2("test2", "Years", startview = "year", minview = "months", maxview = "decades")
+  ),
+  server = function(input, output, session) {}
+)
+```
+
+
+
+## Option B: use shinyWidgets - airDatepickerInput
+
+- source: https://stackoverflow.com/questions/41012125/r-shiny-daterange-input-month-year-only
+
+Here is an example attached:
+
+- use the `airDatepickerIput` to select date range
+- use `floor_date(Sys.Date(), "month")` to find the first day of the current month (source: https://stackoverflow.com/questions/13247993/change-day-of-the-month-in-a-date-to-first-day-01)
+
+
+```{r}
+library(shiny)
+library(shinyWidgets)
+library(lubridate)
+
+ui <- fluidPage(
+  airDatepickerInput(
+    inputId = "test",
+    label = "Select month range:",
+    range = TRUE, 
+    separator = " ~ ",
+    dateFormat = "yyyy-mm",
+    minDate = as.Date("2019-01-01"),
+    maxDate = floor_date(Sys.Date(), "month"),
+    minView = "months",
+    view = "months",
+    monthsField = "monthsShort",
+    value = c(as.Date("2019-01-01"),floor_date(Sys.Date(), "month")),
+    clearButton = TRUE,
+    autoClose = TRUE
+  ),
+  verbatimTextOutput("res")
+)
+
+server <- function(input, output, session) {
+  output$res <- renderPrint(input$test)
+}
+
+shinyApp(ui, server)
+
+```
+
+
+

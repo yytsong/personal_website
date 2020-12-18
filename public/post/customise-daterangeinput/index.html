@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> Customise dateRangeInput &middot; YTSONG&#39;s HOME </title>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.75.1" />
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="/css/nix.css">
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Inconsolata%7COpen+Sans%7CConcert+One" rel="stylesheet">
+
+
+
+
+
+
+    </head>
+
+    <body>
+        <header>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse font-header">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+      <a class="navbar-brand" id="green-terminal" href='/'>
+        @ ~ $
+      </a>
+		</div>
+
+		
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href='/'>/home/</a>
+        </li>
+        
+				
+				
+				<li class="dropdown">
+                    
+            		<a href="/post">~/post</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="/about">~/about</a>
+            		
+        		</li>
+        		
+
+			</ul>
+		</div>
+	</div>
+</nav>
+</header>
+
+        <div class="flex-wrapper">
+            <div class="container wrapper">
+                <h1><a href="/post/customise-daterangeinput/">Customise dateRangeInput</a></h1>
+                <span class="post-date">2020-12-18 </span>
+                <div class="post-content">
+                    
+
+
+<div id="option-a-fix-daterangeinput" class="section level2">
+<h2>Option A: fix dateRangeInput</h2>
+<ul>
+<li>source: <a href="https://stackoverflow.com/questions/41012125/r-shiny-daterange-input-month-year-only" class="uri">https://stackoverflow.com/questions/41012125/r-shiny-daterange-input-month-year-only</a></li>
+<li>further development: <a href="https://stackoverflow.com/questions/31152960/display-only-months-in-daterangeinput-or-dateinput-for-a-shiny-app-r-programmin" class="uri">https://stackoverflow.com/questions/31152960/display-only-months-in-daterangeinput-or-dateinput-for-a-shiny-app-r-programmin</a></li>
+</ul>
+<p>Step 1 is to customize <code>dateInput</code> and <code>dateRangeInput</code>.</p>
+<pre class="r"><code>library(shiny)
+library(lubridate)
+
+dateInput2 &lt;- function(inputId, label, minview = &quot;days&quot;, maxview = &quot;decades&quot;, ...) {
+  d &lt;- shiny::dateInput(inputId, label, ...)
+  d$children[[2L]]$attribs[[&quot;data-date-min-view-mode&quot;]] &lt;- minview
+  d$children[[2L]]$attribs[[&quot;data-date-max-view-mode&quot;]] &lt;- maxview
+  d
+}
+
+dateRangeInput2 &lt;- function(inputId, label, minview = &quot;days&quot;, maxview = &quot;decades&quot;, ...) {
+  d &lt;- shiny::dateRangeInput(inputId, label, ...)
+  d$children[[2L]]$children[[1]]$attribs[[&quot;data-date-min-view-mode&quot;]] &lt;- minview
+  d$children[[2L]]$children[[3]]$attribs[[&quot;data-date-min-view-mode&quot;]] &lt;- minview
+  d$children[[2L]]$children[[1]]$attribs[[&quot;data-date-max-view-mode&quot;]] &lt;- maxview
+  d$children[[2L]]$children[[3]]$attribs[[&quot;data-date-max-view-mode&quot;]] &lt;- maxview
+  d
+}</code></pre>
+<p>Step 2 is to apply in a minimum example.</p>
+<pre class="r"><code>library(shiny)
+shinyApp(
+  ui = fluidPage(
+    dateInput2(&quot;test1&quot;, &quot;Year&quot;, startview = &quot;year&quot;, minview = &quot;months&quot;, maxview = &quot;decades&quot;),
+    dateRangeInput2(&quot;test2&quot;, &quot;Years&quot;, startview = &quot;year&quot;, minview = &quot;months&quot;, maxview = &quot;decades&quot;)
+  ),
+  server = function(input, output, session) {}
+)</code></pre>
+</div>
+<div id="option-b-use-shinywidgets---airdatepickerinput" class="section level2">
+<h2>Option B: use shinyWidgets - airDatepickerInput</h2>
+<ul>
+<li>source: <a href="https://stackoverflow.com/questions/41012125/r-shiny-daterange-input-month-year-only" class="uri">https://stackoverflow.com/questions/41012125/r-shiny-daterange-input-month-year-only</a></li>
+</ul>
+<p>Here is an example attached:</p>
+<ul>
+<li>use the <code>airDatepickerIput</code> to select date range</li>
+<li>use <code>floor_date(Sys.Date(), "month")</code> to find the first day of the current month (source: <a href="https://stackoverflow.com/questions/13247993/change-day-of-the-month-in-a-date-to-first-day-01" class="uri">https://stackoverflow.com/questions/13247993/change-day-of-the-month-in-a-date-to-first-day-01</a>)</li>
+</ul>
+<pre class="r"><code>library(shiny)
+library(shinyWidgets)
+library(lubridate)
+
+ui &lt;- fluidPage(
+  airDatepickerInput(
+    inputId = &quot;test&quot;,
+    label = &quot;Select month range:&quot;,
+    range = TRUE, 
+    separator = &quot; ~ &quot;,
+    dateFormat = &quot;yyyy-mm&quot;,
+    minDate = as.Date(&quot;2019-01-01&quot;),
+    maxDate = floor_date(Sys.Date(), &quot;month&quot;),
+    minView = &quot;months&quot;,
+    view = &quot;months&quot;,
+    monthsField = &quot;monthsShort&quot;,
+    value = c(as.Date(&quot;2019-01-01&quot;),floor_date(Sys.Date(), &quot;month&quot;)),
+    clearButton = TRUE,
+    autoClose = TRUE
+  ),
+  verbatimTextOutput(&quot;res&quot;)
+)
+
+server &lt;- function(input, output, session) {
+  output$res &lt;- renderPrint(input$test)
+}
+
+shinyApp(ui, server)</code></pre>
+</div>
+
+                </div>
+                
+                <div class="post-comments">
+                    
+                </div>
+                
+            </div>
+            <footer class="footer text-center">
+<p>Copyright &copy; 2020 Yutong Song -
+<span class="credit">
+	Powered by
+	<a target="_blank" href="https://gohugo.io">Hugo</a>
+	and
+	<a target="_blank" href="https://github.com/LordMathis/hugo-theme-nix/">Nix</a> theme.
+</span>
+</p>
+</footer>
+
+        </div>
+    </body>

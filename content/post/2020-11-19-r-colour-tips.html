@@ -1,0 +1,26 @@
+---
+title: R Colour Tips
+author: Yutong Song
+date: '2020-11-19'
+slug: r-colour-tips
+categories:
+  - R
+tags: []
+---
+
+
+
+<div id="fast-sample-colour" class="section level2">
+<h2>Fast sample colour</h2>
+<p>Sample a number of colours from a color pallet.</p>
+<pre class="r"><code>Colorsred = rev (c(brewer.pal(6,&quot;Reds&quot;)))
+Colorsred</code></pre>
+<pre><code>## [1] &quot;#A50F15&quot; &quot;#DE2D26&quot; &quot;#FB6A4A&quot; &quot;#FC9272&quot; &quot;#FCBBA1&quot; &quot;#FEE5D9&quot;</code></pre>
+</div>
+<div id="rcolorbrewer-book" class="section level2">
+<h2>RColorBrewer book</h2>
+<p>Source: <a href="https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html" class="uri">https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html</a></p>
+<pre class="r"><code>library(RColorBrewer)
+display.brewer.all()</code></pre>
+<p><img src="/post/2020-11-19-r-colour-tips_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>

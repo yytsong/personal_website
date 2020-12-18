@@ -37,6 +37,7 @@ Another post about reading and writing spatial data <https://mgimond.github.io/S
 - tmap
 - ggmap
 - Leaflet
+- mapdeck
 
 
 ### baseR
@@ -132,6 +133,19 @@ leaflet(plt_df) %>%
             values= ~ dwl_yoy,  # value to be passed to palette function
             title = 'YOY Change by No. of Dwellings') # legend title
 ```
+
+**Note**: make shiny Leaflet map faster <https://community.rstudio.com/t/make-shiny-leaflet-map-less-cumbersome-faster/210/2>
+
+An Australia example of applying rmapshaper <https://stackoverflow.com/questions/51607487/optimising-shiny-leaflet-performance-for-detailed-maps-with-many-layers>
+
+Leaflet markers <https://rstudio.github.io/leaflet/markers.html#marker-clusters>
+
+Other Leaflet related posts:
+- support a number of markers <https://stackoverflow.com/questions/53038090/r-leaflet-limitations-how-many-markers-does-a-leaflet-map-support>
+
+### mapdeck
+
+mapdeck according to <https://stackoverflow.com/questions/54613005/shiny-and-leaflet-integration-is-really-slow-how-can-i-speed-it-up> is a faster alternative to plot sf objects. The original github repo is <https://github.com/SymbolixAU/mapdeck>.
 
 
 ### Other supplementary sources

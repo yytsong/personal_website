@@ -6,7 +6,7 @@
     <description>Recent content on YTSONG&#39;s HOME</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a New Theme</title>
       <link>/archive/creating-a-new-theme/</link>
@@ -29,6 +29,48 @@ We&amp;rsquo;ll start with creating a new site with a very basic template.</desc
     </item>
     
     <item>
+      <title>Customise dateRangeInput</title>
+      <link>/post/customise-daterangeinput/</link>
+      <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/customise-daterangeinput/</guid>
+      <description>Option A: fix dateRangeInput  source: https://stackoverflow.com/questions/41012125/r-shiny-daterange-input-month-year-only further development: https://stackoverflow.com/questions/31152960/display-only-months-in-daterangeinput-or-dateinput-for-a-shiny-app-r-programmin  Step 1 is to customize dateInput and dateRangeInput.
+library(shiny) library(lubridate) dateInput2 &amp;lt;- function(inputId, label, minview = &amp;quot;days&amp;quot;, maxview = &amp;quot;decades&amp;quot;, ...) { d &amp;lt;- shiny::dateInput(inputId, label, ...) d$children[[2L]]$attribs[[&amp;quot;data-date-min-view-mode&amp;quot;]] &amp;lt;- minview d$children[[2L]]$attribs[[&amp;quot;data-date-max-view-mode&amp;quot;]] &amp;lt;- maxview d } dateRangeInput2 &amp;lt;- function(inputId, label, minview = &amp;quot;days&amp;quot;, maxview = &amp;quot;decades&amp;quot;, ...) { d &amp;lt;- shiny::dateRangeInput(inputId, label, ...) d$children[[2L]]$children[[1]]$attribs[[&amp;quot;data-date-min-view-mode&amp;quot;]] &amp;lt;- minview d$children[[2L]]$children[[3]]$attribs[[&amp;quot;data-date-min-view-mode&amp;quot;]] &amp;lt;- minview d$children[[2L]]$children[[1]]$attribs[[&amp;quot;data-date-max-view-mode&amp;quot;]] &amp;lt;- maxview d$children[[2L]]$children[[3]]$attribs[[&amp;quot;data-date-max-view-mode&amp;quot;]] &amp;lt;- maxview d } Step 2 is to apply in a minimum example.</description>
+    </item>
+    
+    <item>
+      <title>Data Source - Research</title>
+      <link>/post/data-source-research/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/data-source-research/</guid>
+      <description> ASJC - All Science Journal Classification  List of journal classifications Source: https://pg.edu.pl/documents/611754/75313317/asjc
+ Full code list with category description Source: https://www.journalsindexed.com/2016/06/asjc-code-list.html
+   </description>
+    </item>
+    
+    <item>
+      <title>Shiny bookmarking</title>
+      <link>/post/shiny-bookmarking/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/shiny-bookmarking/</guid>
+      <description> Shiny bookmark without bookmark source: https://www.r-bloggers.com/2020/12/bookmarking-a-shiny-app-without-shiny-bookmarking/
+ </description>
+    </item>
+    
+    <item>
+      <title>R Colour Tips</title>
+      <link>/post/r-colour-tips/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-colour-tips/</guid>
+      <description> Fast sample colour Sample a number of colours from a color pallet.
+Colorsred = rev (c(brewer.pal(6,&amp;quot;Reds&amp;quot;))) Colorsred ## [1] &amp;quot;#A50F15&amp;quot; &amp;quot;#DE2D26&amp;quot; &amp;quot;#FB6A4A&amp;quot; &amp;quot;#FC9272&amp;quot; &amp;quot;#FCBBA1&amp;quot; &amp;quot;#FEE5D9&amp;quot;  RColorBrewer book Source: https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html
+library(RColorBrewer) display.brewer.all()  </description>
+    </item>
+    
+    <item>
       <title>Map in R</title>
       <link>/post/map-in-r/</link>
       <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
@@ -36,8 +78,8 @@ We&amp;rsquo;ll start with creating a new site with a very basic template.</desc
       <guid>/post/map-in-r/</guid>
       <description>Reading and writing spatial data in R Download SA files in ESRI Shapefile Format from https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument. Source: https://medium.com/analytics-vidhya/mapping-australia-in-r-6ce092c48b49
 AUS_SA2_shp &amp;lt;- read_sf(&amp;quot;data/map/1270055001_sa2_2016_aust_shape&amp;quot;,&amp;quot;SA2_2016_AUST&amp;quot;) st_write(AUS_SA2_shp, &amp;quot;data/sa2_dt&amp;quot;, driver=&amp;quot;ESRI Shapefile&amp;quot;) Another post about reading and writing spatial data https://mgimond.github.io/Spatial/reading-and-writing-spatial-data-in-r.html#exporting-to-different-data-file-formats
- Package comparison:  baseR ggplot2 tmap ggmap Leaflet  baseR Source: https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html
- ggplot2 Using geom_sf on Mac is super slow if it is even possible. People suggest to install Quartz on Mac OS. This post discuss performance issue of Quartz and X11.</description>
+ Package comparison:  baseR ggplot2 tmap ggmap Leaflet mapdeck  baseR Source: https://cran.r-project.org/web/packages/cancensus/vignettes/Making_maps_with_cancensus.html
+ ggplot2 Using geom_sf on Mac is super slow if it is even possible. People suggest to install Quartz on Mac OS.</description>
     </item>
     
     <item>

@@ -1,0 +1,18 @@
+---
+title: Data Source - Research
+author: Yutong Song
+date: '2020-12-11'
+slug: data-source-research
+categories:
+  - DataSource
+tags:
+  - Data-Source
+---
+
+## ASJC - All Science Journal Classification
+
+- List of journal classifications
+Source: <https://pg.edu.pl/documents/611754/75313317/asjc>
+
+- Full code list with category description
+Source: <https://www.journalsindexed.com/2016/06/asjc-code-list.html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>daterange on YTSONG&#39;s HOME</title>
+    <link>/tags/daterange/</link>
+    <description>Recent content in daterange on YTSONG&#39;s HOME</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/daterange/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Customise dateRangeInput</title>
+      <link>/post/customise-daterangeinput/</link>
+      <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/customise-daterangeinput/</guid>
+      <description>Option A: fix dateRangeInput  source: https://stackoverflow.com/questions/41012125/r-shiny-daterange-input-month-year-only further development: https://stackoverflow.com/questions/31152960/display-only-months-in-daterangeinput-or-dateinput-for-a-shiny-app-r-programmin  Step 1 is to customize dateInput and dateRangeInput.
+library(shiny) library(lubridate) dateInput2 &amp;lt;- function(inputId, label, minview = &amp;quot;days&amp;quot;, maxview = &amp;quot;decades&amp;quot;, ...) { d &amp;lt;- shiny::dateInput(inputId, label, ...) d$children[[2L]]$attribs[[&amp;quot;data-date-min-view-mode&amp;quot;]] &amp;lt;- minview d$children[[2L]]$attribs[[&amp;quot;data-date-max-view-mode&amp;quot;]] &amp;lt;- maxview d } dateRangeInput2 &amp;lt;- function(inputId, label, minview = &amp;quot;days&amp;quot;, maxview = &amp;quot;decades&amp;quot;, ...) { d &amp;lt;- shiny::dateRangeInput(inputId, label, ...) d$children[[2L]]$children[[1]]$attribs[[&amp;quot;data-date-min-view-mode&amp;quot;]] &amp;lt;- minview d$children[[2L]]$children[[3]]$attribs[[&amp;quot;data-date-min-view-mode&amp;quot;]] &amp;lt;- minview d$children[[2L]]$children[[1]]$attribs[[&amp;quot;data-date-max-view-mode&amp;quot;]] &amp;lt;- maxview d$children[[2L]]$children[[3]]$attribs[[&amp;quot;data-date-max-view-mode&amp;quot;]] &amp;lt;- maxview d } Step 2 is to apply in a minimum example.</description>
+    </item>
+    
+  </channel>
+</rss>

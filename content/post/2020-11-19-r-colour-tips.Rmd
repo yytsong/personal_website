@@ -1,0 +1,33 @@
+---
+title: R Colour Tips
+author: Yutong Song
+date: '2020-11-19'
+slug: r-colour-tips
+categories:
+  - R
+tags: []
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(RColorBrewer)
+```
+
+## Fast sample colour
+
+Sample a number of colours from a color pallet.
+
+```{r}
+Colorsred = rev (c(brewer.pal(6,"Reds")))
+Colorsred
+```
+
+## RColorBrewer book
+
+Source: <https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html>
+
+```{r}
+library(RColorBrewer)
+display.brewer.all()
+```
+
