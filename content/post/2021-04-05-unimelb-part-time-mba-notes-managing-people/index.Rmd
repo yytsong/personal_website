@@ -1,0 +1,370 @@
+---
+title: UniMelb Part-time MBA Notes - Managing People
+author: Yutong Song
+date: '2021-04-05'
+slug: []
+categories:
+  - MBA
+tags:
+  - UniMelbMBA
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+```
+
+# Introduction
+I enrolled in Managing People subject in Term 1, 2021. [Dr Anne Lytle](https://www.linkedin.com/in/anne-lytle-9132b17/) kindly agreed to take over the lecture because the assigned lecturer had personal issue. I really loved Anne's content delivery, practical framework, and experience shared from her consultancy work. 
+
+# Frameworks
+We had 10 weeks in total plus one week exam after. Frameworks were listed based on the sequence in the lecture. Key framework are in **bold**.
+
+## Week 1 People as Competitive advantage: An evidence-based approach
+
+1. Porter's 5 forces
+    + Barriers to entry
+    + Threat of substitutes
+    + Bargaining power of buyers
+    + Bargaining power of suppliers
+    + Rivalry among existing competitors
+
+2. Cultural continuum of TOXIC and THRIVING
+
+3. Increasing employee retention 
+
+4. **Pfeffer & Viega**: 7 practice of successful organizations
+    + Employment security
+    + Selective hiring
+    + Self-managed teams & decentralization
+    + Comparatively high compensation contingent on performance
+    + Extensive training 
+    + Reduction of status differences
+    + Sharing information
+
+Key Readings:
+Pfeffer, J. & Viega, J.F. (1999).  Putting people first for organisational success. Academy of Management Executive, 13(2), 37-48.
+
+## Week 2 Organisational Design
+
+1. Organizational structure
+    + Strategic grouping (formal structure)
+    + Linking
+    + Alignment
+    Key point: Improving linking and alignment is what should be done first to see if the problems can be solved, and then if this is insufficient, change the strategic groupings.
+  
+2. Types of organizational structure
+    + Functional structure
+      - Function silos!
+    + Matrix grouping structure
+      - Dual reporting
+    + Division grouping structure
+      - Lots of repetitions
+    + Front/back grouping structure
+      - Lack of integration and synergy between the front & back end 
+    
+3. When should organization restructure?
+    + Imminent performance issue
+    + Drive synergy 
+    + Response to growth of organization
+    + Management succession stimulates change
+    + Require as a result of internal problems
+    + Current design no longer fits external environment
+
+4. Costs of organizational restructure
+    + Disruption of normal flow of business and work
+    + Risk to long-term relationships with key customers & suppliers
+    + Stress & anxiety
+    + Inefficiencies while readjusting to the new structure
+    
+5. Reasons why restructure don't work
+    + Strategic design issues
+    + Political issues
+    + Cultural issues
+  
+6. **Congruence model**
+    + Inputs
+    + Strategy 
+    + Outputs
+    + Work
+    + Informal organization
+    + People
+    + Formal organization 
+    + **Leadership**
+    + **The fit**
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/congruence.png)
+
+
+Key Readings:
+Mercer Delta (2003).  The Congruence Model: A Roadmap for Understanding Organizational Performance. www.mercerdelta.com
+
+## Week 3 Analyzing organizational effectiveness
+
+1. **Sigmoid curve** - Charles Handy
+    + At the end of the sigmoid curve, it returns back to the beginning of the curve to start next curve
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/sigmoid_curve.png)
+
+2. Change versus Not Change
+    + why change?
+      - External forces: general, external, and internal
+    + why not change?
+      - forcefiled analysis
+    
+3. **Type of strategic change**
+   + Adaptation
+   + Reconstruction
+   + Revolution
+   + Evolution
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/type_of_strategic_change.png)
+   
+
+4. Kotter's 8 steps to change
+    + Establishing a sense of urgency
+    + Forming a powerful guiding coalition
+    + Creating a vision
+    + Communicating the vision
+    + Empowering others to act on the vision
+    + Planning for and creating short-term wins
+    + Consolidating improvements and producing still more change
+    + Institutionalizing new approaches in culture
+
+Key Readings:
+Kotter, J.P. (2007).  Leading change: Why transformation efforts fail, Harvard Business Review, 85, pages 96-103.
+
+## Week 4 Driving organizational culture
+
+1. Organization culture dimensions
+    + Caring
+    + Purpose
+    + Learning
+    + Enjoyment
+    + Results
+    + Authority
+    + Safety
+    + Order
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/8_dim.png)
+
+2. Iceberg model of culture
+    + Observable
+    + Values & Belief
+    + Basic (deep level assumption)
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/iceberg.png)
+
+3. Strength of cultures
+    + Strong culture
+    + Warring factions
+    + Vacuous beliefs
+    + External control 
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/strength_of_culture.png)
+ 
+4. Culture strategy alignment
+    + Strategy
+    + Espoused values
+    + Enacted values
+
+
+Key Readings:
+Groysberg,B., Lee, J., Price, J. & Cheng Y.J.  (2018).  The Leader’s Guide to Corporate Culture
+
+## Week 5 Power influence
+
+**Source of power --> Influence tactics --> Influence results**
+
+1. Seven types of power
+    + Coercive
+    + Reward
+    + Legitimate
+    + Ecological 
+    + Information
+    + Expert
+    + Referent
+
+2. Influence tactic 
+    + Rational persuasion [H]
+    + Pressure [L]
+    + Ingratiation [M]
+    + Exchange [M]
+    + Inspirational appeal [H]
+    + Personal appeal [M]
+    + Pulling rank: use your own position to influence junior people [L]
+    + Upward appeals: use higher position of others to influence target [L]
+    + Consultation [H]
+    + Coalitions [L]
+
+3. What about you as a person makes you more influential?
+    + Credibility
+    + Trustworthiness
+    + Likability
+
+4. Influence outcome
+    + Commitment
+    + Identification
+    + Compliance
+    + Resistance
+    
+Key Readings:
+Yukl, G. (2002).  Power and influence.  In G. Yukl.  Leadership in Organisations.  Upper Saddle River, NJ. Prentice Hall. pages 141-171.
+
+## Week 6 Attracting & selecting talent
+
+1. Myths - selecting
+    + Conscientiousness >> Intelligence
+    + "Values" >> Intelligence
+    + Integrity tests do not work because applicants lie on them
+    + "Gut Instinct" & "chemistry" are critical when hiring, and better than testing
+
+2. **Tools for selecting**
+    + Work sample (do actual work)
+    + Cognitive ability tests
+    + Structured interview
+    + Job knowledge tests
+    + Integrity tests
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/tools.png)
+
+
+3. Interviews - the interviewer
+    + Relevant situation questions
+    + Friendly and good mode
+    + Competent does not mean confidence in appearance
+ 
+4. Interviews - the interviewee
+    + Dress properly
+    + Friendly and good mode
+    + Confident
+    + Eye contact
+    + Find ways to connect ( similarity, attractiveness & liking)
+
+Key Readings:
+Cappelli, P. (2019).  Your approach to hiring is all wrong.  Harvard Business Review, May-June, reprint R1903B.
+
+## Week 7 Influence performance 1
+
+1. Attribution theory 
+    + The fundamental attribution error: underestimate the influence of situational factors & overestimating the influence of dispositions factors
+    + Self-serving bias: attribute our own performance success to dispositions factors & failure to situational factors
+
+2. The circle of motivation
+    **Goal setting --> Support --> Provide Feedback --> Rewarding--> Goal setting**
+    + Types of performance 
+      - (Outcome, Process, Roles vs. Extra)
+      - (Proficiency, Adaptivity, Pro-activity)
+      - (Individual, Team, Organizational) 
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/types_of_performance.png)
+    + Goal: SMARTER +
+      - specific and clear
+      - measurable: key performance area and key performance indicator; value-based behavior KPI
+      - achievable: differentiate between essential and stretch targets, do not punish if do not meet stretch goals
+      - result oriented & related
+      - time specific
+      - ethical
+      - recorded & resourced
+      - positively framed
+
+3. common forms of support
+    + Providing resources
+    + Coaching / mentoring
+    + Training
+    + Role modeling
+    + Inspiration
+    + **Empowerment**
+    + **Delegation**: one type of empowerment
+     - helicopter, dumpsite, boomerang, martyr
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/delegation.png)
+
+
+Key Readings:
+Robbins, S.P. & Judge, T.A. (2018). Motivation concepts.  Organisational Behavior, 18th Ed.  Prentice Hall. Chapter 7.
+
+## Week 8 Influence performance 2
+
+1. Feedback - **SCARF model**
+    + Status
+    + Certainty
+    + Autonomy 
+    + Relatedness
+    + Fairness
+    + Brain status approach & avoid
+
+2. A model for feedback **FFOCR model**
+    + Frame
+    + Facts
+    + Outcomes
+    + Consequences
+    + Recommendations
+    
+3. Mindshifting model
+    + Catch
+    + Calm
+    + Choose
+  
+4. Reward
+    + the values-performance clash
+      - Values-based behaviors
+      - Task performance
+    + Managers are poor at predicting what staff want
+      - Full appreciation of work done
+      
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/values_performance_clash.png)
+
+
+Key Readings:
+Kerr, S. (1995).  The folly of rewarding A while hoping for B. Academy of Management Executive, 9, pages 7-14.
+
+## Week 9 Managing People
+
+1. The **cultural map by ERIN MEYER**
+    + Communication
+    + Evaluating
+    + Persuading
+    + Leading
+    + Deciding
+    + Trusting
+    + DIsagreeing
+    + Scheduling
+    
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/erin_meyer.png)
+
+2. Notes of using cultural difference
+    + Most culture research was done by country-base
+    + Cannot generalize country cultural difference to individuals, country is a proxy for culture
+    + It is helpful to understand the difference in cultures and think about how to manage them.
+
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/country_culture.png)
+
+
+3. Culture's impact
+    + Intra-cultural interaction
+    + Inter-cultural interaction
+    + Ready to form a third culture and agree on new norms
+
+Key Readings:
+Meyer, E. (2014).  Navigating the cultural minefield. Harvard Business Review, May 2014, reprint R1405K.
+
+## Week 10 Managing Diversity 
+
+1. Performance diagnostic framework
+    + Step 1: Determine your desired outcome: what type of performance do you want to improve? - Types of performance
+    + Step 2: Use the FFOCR model to clarify the issues. - FFOCR
+    + Step 3: Identify any underlying factors that might explain the behavior. This may involve taking to the person or others. - Performance = f (Environment + ability + motivation)
+    + Step 4: Identify where you are on the “Wheel of Motivation” & implement relevant actions. - Often start with giving feedback
+
+
+2. Gender: the double bind
+    + The most important factor is women to change mindset.
+      1. Close the ambition gap, women do not sell yourself short
+      2. Sit at the table, do not think they are not good enough to ask for promotion, apply position even you feel you are not qualified
+      3. Make your partner a real partner, chose your partner wisely, who will sacrifice as much as you do
+      4. Don’t leave before you leave, do not give up opportunities for your family life
+
+
+Key Readings:
+Tinsley, C.H. & Ely, R.J. (2018).  What most people get wrong about men and women. Harvard Business Review, Ma-June, pages 114-121.
+
