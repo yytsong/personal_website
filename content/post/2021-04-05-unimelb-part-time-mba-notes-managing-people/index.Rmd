@@ -255,8 +255,6 @@ Cappelli, P. (2019).  Your approach to hiring is all wrong.  Harvard Business Re
       - (Outcome, Process, Roles vs. Extra)
       - (Proficiency, Adaptivity, Pro-activity)
       - (Individual, Team, Organizational) 
-
-![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/types_of_performance.png)
     + Goal: SMARTER +
       - specific and clear
       - measurable: key performance area and key performance indicator; value-based behavior KPI
@@ -356,6 +354,7 @@ Meyer, E. (2014).  Navigating the cultural minefield. Harvard Business Review, M
     + Step 3: Identify any underlying factors that might explain the behavior. This may involve taking to the person or others. - Performance = f (Environment + ability + motivation)
     + Step 4: Identify where you are on the “Wheel of Motivation” & implement relevant actions. - Often start with giving feedback
 
+![](/post/2021-04-05-unimelb-part-time-mba-notes-managing-people/types_of_performance.png)
 
 2. Gender: the double bind
     + The most important factor is women to change mindset.
