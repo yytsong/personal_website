@@ -12,3 +12,21 @@ tags:
 
 # Shiny bookmark without bookmark
 source: <https://www.r-bloggers.com/2020/12/bookmarking-a-shiny-app-without-shiny-bookmarking/>
+
+
+# Dockernised Shiny apps
+source: <https://www.r-bloggers.com/2021/05/dockerized-shiny-apps-with-dependencies/?utm_source=feedburner&utm_medium=email&utm_campaign=Feed%3A+RBloggers+%28R+bloggers%29>
+
+
+## Valuebox
+source:<https://jkunst.com/blog/posts/2020-06-26-valuebox-and-sparklines/>
+
+
+## Shiny transfer files
+source: <https://www.r-bloggers.com/2021/05/file-transfer-based-publishing-for-shiny-apps/?utm_source=feedburner&utm_medium=email&utm_campaign=Feed%3A+RBloggers+%28R+bloggers%29>
+
+
+
+## Tooltip shiny
+Source: <https://github.com/htmlwidgets/sparkline/issues/12>
+Source2: <https://github.com/htmlwidgets/sparkline/issues/14>

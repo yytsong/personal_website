@@ -31,3 +31,7 @@ library(RColorBrewer)
 display.brewer.all()
 ```
 
+
+## Colour Preview Functions
+
+Source: <https://themockup.blog/posts/2020-05-13-reactable-tables-the-rest-of-the-owl/>
